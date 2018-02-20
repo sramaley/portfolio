@@ -1,3 +1,9 @@
+"""
+A simple neural net for classifying handwritten letter images that contains one hidden layer of 200 units 
+plus one bias unit. The inputs are taken as flattened NumPy arrays of 26x26 images with a bias unit added 
+at the end, for an input size of 785. The output layer is a softmax of 26 units, representing the 
+probability of each letter. 
+"""
 import numpy as np
 from scipy.special import expit
 
@@ -13,8 +19,11 @@ class VanillaNeuralNet():
             self.V = np.random.randn(200, 785) / 785.0
         self.steps = 0
 
-
+    
     def train(self, X, Y, epochs=5, W_learn=(0.5, 0.7, 1), V_learn=(0.9, 0.8, 1), name="weights"):
+        """The W_learn and V_learn parameters both take a tuple of three numbers as input,
+        representing the first learning rate, second learning rate, and number of epochs to
+        switch after respectively."""
         count, epoch = 0, 0
         size = X.shape[0]
         idx = np.random.permutation(size)
